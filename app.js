@@ -33,17 +33,18 @@ function shuffleArray(array) {
 //function to append divs to the DOM
 function placeCards(array) {
   var i = 0;
+  var $row;
   while (i < array.length) {
     for (var j = 0; j < 6; j++) {
       $row = $('<div class="row"></div>');
-      $row.append('<div id="card-' + i + '"></>');
+      $row.append('<div class="click-card" id="card-' + i + '"></>');
       i++;
     }
-    for (var k = 0; k < array.length; k++) {
-      $('#card-' + k).data('cardType', array[k]);
-    }
+    $('#board').append($row);
   }
-
+  for (var k = 0; k < array.length; k++) {
+    $('#card-' + k).data('cardType', array[k]);
+  }
 }
 
 //function to hide revealed cards

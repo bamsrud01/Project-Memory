@@ -4,7 +4,7 @@
 
 
 //Create one array of sets of two numbers.
-var array = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15];
+var cardArray = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15];
 var clickCount = 0;
 var totalTurns = 0;
 
@@ -14,7 +14,16 @@ $(document).ready(function() {
 
 });
 
-//function to shuffle array
+//function to shuffle array.  Found on Stack Overflow.
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
+}
 
 //function to append divs to the DOM
 

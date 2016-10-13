@@ -3,23 +3,35 @@
 //  October, 2016
 
 
-//Create one array of sets of two numbers.
-var cardArray = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12];
+//  Create one array of sets of two numbers.
+var cardArray = ['&#x16A0', '&#x16A2', '&#x16A6', '&#x16A8', '&#x16B1', '&#x16B2',
+                '&#x16B7', '&#x16B9', '&#x16BB', '&#x16BE', '&#x16C1', '&#x16C3',
+                '&#x16C7', '&#x16C8', '&#x16C9', '&#x16CA', '&#x16CF', '&#x16D2',
+                '&#x16D6', '&#x16D7', '&#x16DA', '&#x16DD', '&#x16DF', '&#x16DE'];
 var clickCount = 0;
 var totalTurns = 0;
 
 $(document).ready(function() {
+  //  Duplicate all items in the array
+  duplicateArray(cardArray);
+  //  Shuffle cards
+  shuffleArray(cardArray);
+  //  Append cards to DOM
+  placeCards(cardArray);
 
-//Shuffle cards
-shuffleArray(cardArray);
-//Append cards to DOM
-placeCards(cardArray);
-
-//click handler
+  //  Click handler
 
 });
 
-//function to shuffle array.  Found on Stack Overflow.
+//  Function to duplicate all items in array
+function duplicateArray(array) {
+  var arrLength = array.length;
+  for (var i = 0; i < arrLength; i++) {
+    array.push(array[i]);
+  }
+}
+
+//  Function to shuffle array.  Found on Stack Overflow.
 function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
@@ -30,21 +42,31 @@ function shuffleArray(array) {
     return array;
 }
 
-//function to append divs to the DOM
+//  Function to append divs to the DOM
 function placeCards(array) {
-  var i = 0;
-  var $row;
-  while (i < array.length) {
-    for (var j = 0; j < 6; j++) {
-      $row = $('<div class="row"></div>');
-      $row.append('<div class="click-card" id="card-' + i + '"></>');
-      i++;
+  var cardsPerRow = array.length / 6; //8
+  //  Create six rows
+  for (var rows = 0; rows < 6; rows++) {
+    var $row = $('<div class="card-row"></div>');
+    //  Add cards to rows
+    for (var cardItem = 0; cardItem < cardsPerRow; cardItem++) {
+      //  Add cards
+      var cardInfo = array.shift();
+      $row.append('<div class="card"><p>' + cardInfo + '</p></div>');
     }
+    //  Append cards and reset variable
     $('#board').append($row);
+    $row = null;
   }
-  for (var k = 0; k < array.length; k++) {
-    $('#card-' + k).data('cardType', array[k]);
-  }
+
 }
 
-//function to hide revealed cards
+//  Function to hide revealed cards
+
+
+
+
+
+
+
+//

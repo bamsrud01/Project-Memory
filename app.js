@@ -13,7 +13,7 @@ var totalTurns = 0;
 
 $(document).ready(function () {
 
-  //  Duplicate all items in the array
+  //  Duplicate all items in the array, creating a new array
   duplicateArray(cardArray);
 
   //  Shuffle cards

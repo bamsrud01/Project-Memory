@@ -1,15 +1,18 @@
 /*    MEMORY    */
 
 //  Barrett Amsrud
-//  October, 2016
+//  October - November, 2016
 
 //  Create one array of sets of two numbers.
 var cardArray = ['&#x16A0', '&#x16A2', '&#x16A6', '&#x16A8', '&#x16B1', '&#x16B2',
                 '&#x16B7', '&#x16B9', '&#x16BB', '&#x16BE', '&#x16C1', '&#x16C3',
                 '&#x16C7', '&#x16C8', '&#x16C9', '&#x16CA', '&#x16CF', '&#x16D2',
                 '&#x16D6', '&#x16D7', '&#x16DA', '&#x16DD', '&#x16DF', '&#x16DE'];
-var clickCount = 0;
+var counter = 0;
 var totalTurns = 0;
+var pairsRemaining = cardArray.length;
+var firstClicked = 'none';
+var secondClicked = 'none';
 
 $(document).ready(function () {
 
@@ -22,13 +25,17 @@ $(document).ready(function () {
   //  Append cards to DOM
   placeCards(cardArray);
 
-  //  Hide all cards
+  //  Hide all cards at the start of the game
   hideCards($('.card'));
 
   //  Click handler
   $('#board').on('click', '.card', function() {
-    //  If hidden
 
+    //  If hidden
+    if ($(this).hasClass('hidden')) {
+      $(this).removeClass('hidden');
+      counter ++;
+    }
     //  If counter shows 2 cards
       //  Check for a match
       //  If match, add permanent class

@@ -8,11 +8,12 @@ var cardArray = ['&#x16A0', '&#x16A2', '&#x16A6', '&#x16A8', '&#x16B1', '&#x16B2
                 '&#x16B7', '&#x16B9', '&#x16BB', '&#x16BE', '&#x16C1', '&#x16C3',
                 '&#x16C7', '&#x16C8', '&#x16C9', '&#x16CA', '&#x16CF', '&#x16D2',
                 '&#x16D6', '&#x16D7', '&#x16DA', '&#x16DD', '&#x16DF', '&#x16DE'];
-var counter = 0;
+var state = false;
 var totalTurns = 0;
 var pairsRemaining = cardArray.length;
 var firstClicked = 'none';
 var secondClicked = 'none';
+var unmatched = false;
 
 $(document).ready(function () {
 
@@ -31,20 +32,24 @@ $(document).ready(function () {
   //  Click handler
   $('#board').on('click', '.card', function() {
 
+    if (unmatched) {
+      firstClicked.addClass('hidden');
+      secondClicked.addClass('hidden');
+      console.log('Hiding unmatched');
+      unmatched = false;
+    }
+
     //  If hidden
     if ($(this).hasClass('hidden')) {
       $(this).removeClass('hidden');
-      counter ++;
-      if (counter == 1) {
+      state = !state;
+      if (state) {
         firstClicked = $(this);
-      } else if (counter == 2) {
+        console.log('First');
+      } else if (!state) {
         secondClicked = $(this);
         compareCards(firstClicked, secondClicked);
-      } else if (counter > 2) {
-        //  Reset variables
-        firstClicked = 'none';
-        secondClicked = 'none';
-        counter = 0;
+        console.log('Second');
       } else {
         console.log('ERROR');
       }
@@ -108,7 +113,13 @@ function hideCards($card) {
 //  Function to compare cards
 function compareCards(first, second) {
   totalTurns ++;
+  if (first.children().text() == second.children().text()) {
+    pairsRemaining --;
 
+    console.log('Match!');
+  } else {
+    unmatched = true;
+  }
   //  If first and second are equal
     //  subtract from pairs remaining
   //  Else

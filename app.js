@@ -35,11 +35,26 @@ $(document).ready(function () {
     if ($(this).hasClass('hidden')) {
       $(this).removeClass('hidden');
       counter ++;
+      if (counter == 1) {
+        firstClicked = $(this);
+      } else if (counter == 2) {
+        secondClicked = $(this);
+        compareCards(firstClicked, secondClicked);
+      } else if (counter > 2) {
+        //  Reset variables
+        firstClicked = 'none';
+        secondClicked = 'none';
+        counter = 0;
+      } else {
+        console.log('ERROR');
+      }
+      //  If counter shows 2 cards
+        //  Check for a match
+        //  If match, add permanent class and reset counter
+        //  If not, reset the counter
+
     }
-    //  If counter shows 2 cards
-      //  Check for a match
-      //  If match, add permanent class
-      //  If not, reset the counter
+
   });
 
 });
@@ -88,4 +103,14 @@ function placeCards(array) {
 //  Function to hide revealed cards
 function hideCards($card) {
   $card.addClass('hidden');
+}
+
+//  Function to compare cards
+function compareCards(first, second) {
+  totalTurns ++;
+
+  //  If first and second are equal
+    //  subtract from pairs remaining
+  //  Else
+    //  Add 'hidden' class to first and second
 }

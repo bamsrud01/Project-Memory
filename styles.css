@@ -7,9 +7,11 @@
   /*height: 140px;*/
   text-align: center;
 }
+
 .card-row {
   clear: both;
 }
+
 .card p {
   /*border: 1px solid red;*/
   margin: 15px 0 15px 0;
@@ -17,22 +19,26 @@
   /*vertical-align: middle;*/
 
 }
+
 aside {
   float: left;
   width: 15%;
   border: 1px solid green;
   padding-left: 10px;
 }
+
 #board {
   float: right;
   width: 80%;
   border: 1px solid red;
   margin-top: 10px;
 }
+
 .hidden {
   background-color: blue;
   height: 100px;
 }
+
 .hidden p {
   display: none;
 }

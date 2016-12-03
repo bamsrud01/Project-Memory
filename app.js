@@ -29,6 +29,9 @@ $(document).ready(function () {
   //  Hide all cards at the start of the game
   hideCards($('.card'));
 
+  //  Set initial remaining pairs
+  setRemainingMatches();
+
   //  Click handler
   $('#board').on('click', '.card', function() {
 
@@ -110,12 +113,23 @@ function hideCards($card) {
   $card.addClass('hidden');
 }
 
+//  Function to set turns taken on DOM
+function setTurnsTaken() {
+  $('#turns-taken').text(totalTurns);
+}
+
+//  Function to set remaining matches on DOM
+function setRemainingMatches() {
+  $('#pairs-remaining').text(pairsRemaining);
+}
+
 //  Function to compare cards
 function compareCards(first, second) {
   totalTurns ++;
+  setTurnsTaken();
   if (first.children().text() == second.children().text()) {
     pairsRemaining --;
-
+    setRemainingMatches();
     console.log('Match!');
   } else {
     unmatched = true;

@@ -34,15 +34,14 @@ $(document).ready(function () {
 
   //  Click handler
   $('#board').on('click', '.card', function() {
-
+    //  If the previous two cards are unmatched, hide them.
     if (unmatched) {
       firstClicked.addClass('hidden');
       secondClicked.addClass('hidden');
       console.log('Hiding unmatched');
       unmatched = false;
     }
-
-    //  If hidden
+    //  Detects if a card is hidden.  Prevents click events on revealed cards.
     if ($(this).hasClass('hidden')) {
       $(this).removeClass('hidden');
       state = !state;
@@ -56,13 +55,7 @@ $(document).ready(function () {
       } else {
         console.log('ERROR');
       }
-      //  If counter shows 2 cards
-        //  Check for a match
-        //  If match, add permanent class and reset counter
-        //  If not, reset the counter
-
     }
-
   });
 
 });
@@ -83,7 +76,6 @@ function shuffleArray(array) {
     array[i] = array[j];
     array[j] = temp;
   }
-
   return array;
 }
 
@@ -93,19 +85,16 @@ function placeCards(array) {
   //  Create six rows
   for (var rows = 0; rows < 6; rows++) {
     var $row = $('<div class="card-row"></div>');
-
     //  Add cards to rows
     for (var cardItem = 0; cardItem < cardsPerRow; cardItem++) {
       //  Add cards
       var cardInfo = array.shift();
       $row.append('<div class="card"><p>' + cardInfo + '</p></div>');
     }
-
     //  Append cards and reset variable
     $('#board').append($row);
     $row = null;
   }
-
 }
 
 //  Function to hide revealed cards
@@ -134,8 +123,4 @@ function compareCards(first, second) {
   } else {
     unmatched = true;
   }
-  //  If first and second are equal
-    //  subtract from pairs remaining
-  //  Else
-    //  Add 'hidden' class to first and second
 }
